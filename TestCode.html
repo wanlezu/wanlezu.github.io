@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Counter with Up-Down Effect</title>
+
+</head>
+<body>
+    <h3 class="fw-700 color-primary mb-16" id="counter">0</h3>
+
+    <script>
+        function animateCounter(element, start, end, duration) {
+            const stepTime = Math.abs(Math.floor(duration / (end - start)));
+            let current = start;
+            const increment = end > start ? 1 : -1;
+
+            const timer = setInterval(() => {
+                current += increment;
+                element.textContent = current.toLocaleString() + 'k';
+
+                if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                    clearInterval(timer);
+                }
+            }, stepTime);
+        }
+
+        // Initialize the counter animation
+        const counterElement = document.getElementById('counter');
+        animateCounter(counterElement, 0, 12, 5000); // Start from 0 to 12 in 5 seconds
+    </script>
+</body>
+</html>
